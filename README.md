@@ -1,4 +1,4 @@
-# Reposilite [![Docker Pulls](https://img.shields.io/docker/pulls/dzikoysk/reposilite.svg?label=pulls&logo=docker)](https://hub.docker.com/r/dzikoysk/reposilite) [![Reposilite CI](https://github.com/dzikoysk/reposilite/actions/workflows/maven.yml/badge.svg)](https://github.com/dzikoysk/reposilite/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/dzikoysk/reposilite/branch/master/graph/badge.svg?token=9flNHTSJpp)](https://codecov.io/gh/dzikoysk/reposilite) [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/dzikoysk/reposilite.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/dzikoysk/reposilite/context:javascript) [![CodeFactor](https://www.codefactor.io/repository/github/dzikoysk/reposilite/badge/master)](https://www.codefactor.io/repository/github/dzikoysk/reposilite/overview/master) 
+# Reposilite [![Docker Pulls](https://img.shields.io/docker/pulls/dzikoysk/reposilite.svg?label=pulls&logo=docker)](https://hub.docker.com/r/dzikoysk/reposilite) [![Reposilite CI](https://github.com/dzikoysk/reposilite/actions/workflows/gradle.yml/badge.svg)](https://github.com/dzikoysk/reposilite/actions/workflows/gradle.yml) [![codecov](https://codecov.io/gh/dzikoysk/reposilite/branch/master/graph/badge.svg?token=9flNHTSJpp)](https://codecov.io/gh/dzikoysk/reposilite) [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/dzikoysk/reposilite.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/dzikoysk/reposilite/context:javascript) [![CodeFactor](https://www.codefactor.io/repository/github/dzikoysk/reposilite/badge/master)](https://www.codefactor.io/repository/github/dzikoysk/reposilite/overview/master) 
 
 [Reposilite](https://reposilite.com) *(formerly NanoMaven)* - lightweight repository manager for Maven based artifacts. 
 It is a simple solution to replace managers like Nexus, Archiva or Artifactory. 
@@ -13,11 +13,11 @@ Demo: [repo.panda-lang.org](https://repo.panda-lang.org) <br>
 
 Requirements: 
 * Java 8+
-* RAM 12MB+
+* RAM 16MB+
 
 | Amount | Description |
 |:------:|-------------|
-| *12MB* | Tiny repository for personal projects |
+| *16MB* | Tiny repository for personal projects |
 | *16MB* - *32MB* | *--------------------^------------------* + CI + Proxy |
 | *48MB - 128MB* | Tiny public repository *(recommended)* |
 | *128MB+* | Public repository | 
@@ -25,6 +25,11 @@ Requirements:
 #### Publications
 * [Reposilite - Official Guide](https://reposilite.com/docs/about)
 * [Publishing your artifacts to the Reposilite - a new self-hosted repository manager ](https://dev.to/dzikoysk/publishing-your-artifacts-to-the-reposilite-a-new-self-hosted-repository-manager-3n0h)
+
+Users' stories
+
+* [Reposilite - Reddit Thread](https://www.reddit.com/r/java/comments/k8i2m0/reposilite_alternative_lightweight_maven/)
+* [Looking for simple repository manager by David Kihato](https://kihats.medium.com/custom-self-hosted-maven-repository-cbb778031f68)
 
 #### Features
 * [x] Working Maven repository manager *(example: [repo.panda-lang.org](https://repo.panda-lang.org))*
@@ -36,7 +41,7 @@ Requirements:
 * [x] Supports distributed environments like [K8s](https://github.com/dzikoysk/reposilite/issues/251#issuecomment-698974936)
 * [x] Multithreading
 * [x] Proxy of other remote repositories
-* [x] Supports requests to primary repository without its name in url
+* [x] Support requests to primary repository without its name in url
 * [x] Dashboard
   * [x] Customizable front page
   * [x] Command line interface
@@ -49,7 +54,28 @@ Requirements:
 * [x] 90%+ test coverage
 * [x] Documentation
 
+#### Supporters
+Thanks to:
+
+* [zzmgck](https://github.com/zzmgck) with $191
+* [milkyway0308](https://github.com/milkyway0308) with $15
+* Rob with $5
+* ...
+
+Reposilite is an implicit part of [panda-lang](https://github.com/panda-lang) organization. 
+To make a donation, visit [panda-lang.org/support](https://panda-lang.org/support) and use 'Reposilite' keyword in payment description ❤️.
+
 #### Stack
-* Reposilite Backend: Java + Javalin (Jetty) + Groovy (JUnit)
-* Reposilite Frontend: Vue.js + Pug + Stylus + Tailwindcss
+
+Reposilite 3.x
+* Reposilite Backend: Kotlin + Javalin + Exposed + JUnit + _(DDD + Hexagonal Architecture)_
+* Reposilite Frontend: Vue3 + Vite + Windicss
+* Reposilite Site: React.js + Docusaurus
+
+Reposilite 2.x
+* Reposilite Backend: Java + Javalin (Jetty) + Groovy (JUnit) + _(DDD)_
+* Reposilite Frontend: Vue2 + Pug + Stylus + Tailwindcss
 * Reposilite Site: React.js + Docusaurus 
+
+Reposilite 1.x
+* Reposilite: Java + NanoHTTPD _(and that's literally all)_

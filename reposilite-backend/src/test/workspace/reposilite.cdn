@@ -16,11 +16,13 @@ basePath: /
 forwardedIp: X-Forwarded-For
 # Enable Swagger (/swagger-docs) and Swagger UI (/swagger)
 swagger: true
+# Amount of messages stored in cached logger.
+cachedLogSize: 100
 # Debug
 debugEnabled: false
 
 # Support encrypted connections
-sslEnabled: true
+sslEnabled: false
 # SSL port to bind
 sslPort: 443
 # Key store file to use.
@@ -31,31 +33,65 @@ keyStorePassword: reposilite
 # Redirect http traffic to https
 enforceSsl: false
 
-# Control the maximum amount of data assigned to Reposilite instance
-# Supported formats: 90%, 500MB, 10GB
-diskQuota: 85%
 # List of supported Maven repositories.
 # First directory on the list is the main (primary) repository.
-# Tu mark repository as private, prefix its name with a dot, e.g. ".private"
-repositories [
-  releases
-  snapshots
-  .private
-]
-# Allow to omit name of the main repository in request
-# e.g. /org/panda-lang/reposilite will be redirected to /releases/org/panda-lang/reposilite
-rewritePathsEnabled: true
-# Accept deployment connections
-deployEnabled: true
+# Tu mark repository as private, add the "--private" flag
+repositories {
+  releases {
+    # Supported visibilities: public, hidden, private
+    visibility: public
+    # Used storage type. Supported storage providers:
+    # - fs
+    # - s3 bucket-name region
+    storageProvider: fs
+    # Control the maximum amount of data stored in this repository
+    # Supported formats: 90%, 500MB, 10GB
+    diskQuota: 10GB
+    # Accept deployment connections
+    deployEnabled: true
+    # Does this repository accept redeployment of the same artifact version
+    redeploy: false
+  }
+  snapshots {
+    # Supported visibilities: public, hidden, private
+    visibility: public
+    # Used storage type. Supported storage providers:
+    # - fs
+    # - s3 bucket-name region
+    storageProvider: fs
+    # Control the maximum amount of data stored in this repository
+    # Supported formats: 90%, 500MB, 10GB
+    diskQuota: 10GB
+    # Accept deployment connections
+    deployEnabled: true
+    # Does this repository accept redeployment of the same artifact version
+    redeploy: false
+  }
+  private {
+    # Supported visibilities: public, hidden, private
+    visibility: private
+    # Used storage type. Supported storage providers:
+    # - fs
+    # - s3 bucket-name region
+    storageProvider: fs
+    # Control the maximum amount of data stored in this repository
+    # Supported formats: 90%, 500MB, 10GB
+    diskQuota: 10GB
+    # Accept deployment connections
+    deployEnabled: true
+    # Does this repository accept redeployment of the same artifact version
+    redeploy: false
+  }
+}
 
 # List of proxied repositories.
 # Reposilite will search for an artifact in remote repositories listed below,
 # if the requested artifact was not found.
 proxied [
   https://repo.panda-lang.org
-  https://repo.insertt.dev
   https://jcenter.bintray.com
   https://repo.maven.apache.org/maven2
+  https://hephaestus.dev/release
 ]
 # Reposilite can store proxied artifacts locally to reduce response time and improve stability
 storeProxied: true

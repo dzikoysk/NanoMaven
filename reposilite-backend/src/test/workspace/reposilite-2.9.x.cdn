@@ -1,0 +1,77 @@
+# ~~~~~~~~~~~~~~~~~~~~~~ #
+#       Reposilite       #
+# ~~~~~~~~~~~~~~~~~~~~~~ #
+
+# Hostname
+hostname: ""
+# Port to bind
+port: 80
+# Custom base path
+basePath: /
+# Any kind of proxy services change real ip.
+# The origin ip should be available in one of the headers.
+# Nginx: X-Forwarded-For
+# Cloudflare: CF-Connecting-IP
+# Popular: X-Real-IP
+forwardedIp: X-Forwarded-For
+# Enable Swagger (/swagger-docs) and Swagger UI (/swagger)
+swagger: true
+# Debug
+debugEnabled: false
+
+# Support encrypted connections
+sslEnabled: true
+# SSL port to bind
+sslPort: 443
+# Key store file to use.
+# You can specify absolute path to the given file or use ${WORKING_DIRECTORY} variable.
+keyStorePath: ${WORKING_DIRECTORY}/keystore.jks
+# Key store password to use
+keyStorePassword: reposilite
+# Redirect http traffic to https
+enforceSsl: false
+
+# Control the maximum amount of data assigned to Reposilite instance
+# Supported formats: 90%, 500MB, 10GB
+diskQuota: 85%
+# List of supported Maven repositories.
+# First directory on the list is the main (primary) repository.
+# Tu mark repository as private, add the "--private" flag
+repositories [
+  releases --storage-provider=files --disk-quota=5GB
+  snapshots --storage-provider=files --disk-quota=2GB
+  .private --storage-provider=files --disk-quota=2GB
+  s3-test --storage-provider=s3 --s3-bucket=reposilite-s3-test-bucket --s3-region=us-west-2
+]
+# Allow to omit name of the main repository in request
+# e.g. /org/panda-lang/reposilite will be redirected to /releases/org/panda-lang/reposilite
+rewritePathsEnabled: true
+# Accept deployment connections
+deployEnabled: true
+
+# List of proxied repositories.
+# Reposilite will search for an artifact in remote repositories listed below,
+# if the requested artifact was not found.
+proxied [
+  https://repo.panda-lang.org
+  https://jcenter.bintray.com
+  https://repo.maven.apache.org/maven2
+  https://hephaestus.dev/release
+]
+# Reposilite can store proxied artifacts locally to reduce response time and improve stability
+storeProxied: true
+# Proxying is disabled by default in private repositories because of the security policy.
+# Enabling this feature may expose private data like i.e. artifact name used in your company.
+proxyPrivate: false
+# How long Reposilite can wait for establishing the connection with a remote host. (In seconds)
+proxyConnectTimeout: 3
+# How long Reposilite can read data from remote proxy. (In seconds)
+# Increasing this value may be required in case of proxying slow remote repositories.
+proxyReadTimeout: 15
+
+# Title displayed by frontend
+title: #onlypanda
+# Description displayed by frontend
+description: Public Maven repository hosted through the Reposilite
+# Accent color used by frontend
+accentColor: #2fd4aa

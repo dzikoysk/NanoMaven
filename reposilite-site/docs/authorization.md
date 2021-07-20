@@ -41,8 +41,9 @@ $ keygen com.example.project user w
 ### Permission
 Currently supported permissions:
 
-* `w` - allows to write *(deploy)* using this token
-* `m` - marks token as manager token *(full access)*
+* `r` - allows to read repository content *(default)*
+* `w` - allows to write *(deploy)* artifacts using this token
+* `m` - marks token as manager's *(admin)* token, grants full access to any path in the repository and allows you to access remote CLI through the dashboard
 
 ### Path
 

@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   reposilite:
-    image: reposilite:2.9.23
+    image: reposilite:3.0.0-SNAPSHOT
     build:
       context: .
       dockerfile: Dockerfile

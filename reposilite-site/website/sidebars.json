@@ -10,7 +10,8 @@
     "Services": [
       "docker", 
       "cdn",
-      "reverse-proxy"
+      "reverse-proxy",
+      "systemd"
     ],
     "Settings": [
       "configuration",

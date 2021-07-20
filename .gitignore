@@ -4,6 +4,7 @@ stats.dat
 maven-metadata.xml*
 
 ### Maven ###
+build/
 target/
 pom.xml.tag
 pom.xml.releaseBackup

@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Systemd · Reposilite</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="You can launch Reposilite as a service using [systemd](https://en.wikipedia.org/wiki/Systemd)."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Systemd · Reposilite"/><meta property="og:type" content="website"/><meta property="og:url" content="https://reposilite.com/"/><meta property="og:description" content="You can launch Reposilite as a service using [systemd](https://en.wikipedia.org/wiki/Systemd)."/><meta property="og:image" content="https://reposilite.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://reposilite.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Reposilite</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/about" target="_self">Guide</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="https://panda-lang.org/support" target="_self">Support</a></li><li class=""><a href="https://github.com/dzikoysk/reposilite" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Services</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/about">About</a></li><li class="navListItem"><a class="navItem" href="/docs/install">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/authorization">Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/deploy">Deploy</a></li><li class="navListItem"><a class="navItem" href="/docs/faq">FAQ</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Services</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/docker">Docker</a></li><li class="navListItem"><a class="navItem" href="/docs/cdn">CDN</a></li><li class="navListItem"><a class="navItem" href="/docs/reverse-proxy">Reverse proxy</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/systemd">Systemd</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Settings</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/configuration">Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/repositories">Repositories</a></li><li class="navListItem"><a class="navItem" href="/docs/proxy">Proxy and caching</a></li><li class="navListItem"><a class="navItem" href="/docs/customization">Customization</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Dashboard</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/file-browser">File browser</a></li><li class="navListItem"><a class="navItem" href="/docs/remote-cli">Remote CLI</a></li><li class="navListItem"><a class="navItem" href="/docs/manual-deploy">Manual deploy</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Developers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/indexing">Indexing</a></li><li class="navListItem"><a class="navItem" href="/docs/remote-execution">Remote execution</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Systemd</h1></header><article><div><span><p>You can launch Reposilite as a service using <a href="https://en.wikipedia.org/wiki/Systemd">systemd</a>.
+Here is an example configuration of <code>/etc/systemd/system/reposilite.service</code> file:</p>
+<pre><code class="hljs css language-conf">[Unit]
+<span class="hljs-attribute">Description</span>=Reposilite<span class="hljs-built_in"> Service
+</span>
+[Service]
+<span class="hljs-comment"># Non-root user</span>
+<span class="hljs-attribute">User</span>=reposilite-user
+<span class="hljs-comment"># The configuration file application.properties should be here:</span>
+<span class="hljs-comment"># Change this to your workspace</span>
+<span class="hljs-attribute">WorkingDirectory</span>=/opt/reposilite
+<span class="hljs-comment"># Path to Reposilite executable/script and its configuration.</span>
+<span class="hljs-attribute">ExecStart</span>=java -jar reposilite-2.9.22-SNAPSHOT.jar <span class="hljs-attribute">--config</span>=/etc/reposilite/reposilite.cdn
+<span class="hljs-comment"># Policy</span>
+<span class="hljs-attribute">SuccessExitStatus</span>=0
+<span class="hljs-attribute">TimeoutStopSec</span>=10
+<span class="hljs-attribute">Restart</span>=on-failure
+<span class="hljs-attribute">RestartSec</span>=5
+
+[Install]
+<span class="hljs-attribute">WantedBy</span>=multi-user.target
+</code></pre>
+<p>Related GitHub Issue: <a href="https://github.com/dzikoysk/reposilite/issues/468">#468</a></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/reverse-proxy"><span class="arrow-prev">← </span><span>Reverse proxy</span></a><a class="docs-next button" href="/docs/configuration"><span>Configuration</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap center"><div><h5>Guide</h5><a href="/docs/about">Getting Started</a><a href="/docs/install">Installation</a><a href="/docs/indexing">Developer API</a></div><div><h5>Community</h5><a href="https://github.com/dzikoysk/reposilite/issues" target="_blank">Report Issue</a><a href="https://github.com/dzikoysk/reposilite" target="_blank">Star Reposilite</a><a href="https://twitter.com/dzikoysk" target="_blank">Follow @dzikoysk</a></div></section><section class="copyright">Copyright © 2021 dzikoysk with ❤ panda-lang</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

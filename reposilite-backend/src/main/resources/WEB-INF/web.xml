@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2020 Dzikoysk
+  ~ Copyright (c) 2021 dzikoysk
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
 
     <servlet>
         <servlet-name>ReposiliteServlet</servlet-name>
-        <servlet-class>org.panda_lang.reposilite.ReposiliteServlet</servlet-class>
+        <servlet-class>org.panda_lang.reposilite.web.infrastructure.JavalinServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
